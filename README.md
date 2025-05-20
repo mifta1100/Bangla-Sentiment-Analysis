@@ -124,3 +124,9 @@ Limitations and future improvements:
 
 
 Note: Although I encode the labels for both binary and multiclass classification, I focus only on the binary labels for both model (TF-IDF + Logistic Regression) and Bangla-BERT fine-tuning model. However, multiclass encoding has been done and can be applied to these models in future work. I have already apply Encoding to multiclass in my code too but I use Binary.
+
+
+Note: I have also worked on fine-tuning the Bangla-BERT model. However, both the Bangla-BERT model and its ONNX format are too large in size (exceeding 1GB) to upload to GitHub. Due to this file size limitation, I have only included the notebook file: "Sentiment_Analysis_Bangla_BERT_Miftahul_Sheikh.ipynb". Thank you for your understanding.
+
+
+|-----------------------------------------------------------------------------------------------------------------------|
