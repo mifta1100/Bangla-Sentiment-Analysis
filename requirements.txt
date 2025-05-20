@@ -1,0 +1,22 @@
+1. pandas
+2. re
+3. unicodedata
+4. transformers (for AutoTokenizer)
+5. imbalanced-learn (imblearn - SMOTE and RandomUnderSampler)
+6. scikit-learn (sklearn - train_test_split, TfidfVectorizer, LogisticRegression, metrics, LabelEncoder)
+7. random
+8. matplotlib (matplotlib.pyplot)
+9. seaborn
+10. numpy
+11. tensorflow (tensorflow.keras modules)
+12. skl2onnx
+13. onnxruntime
+14. fastapi
+15. uvicorn (for FastAPI)
+16. pydantic (for data validation)
+
+
+Install:
+1. !pip install imbalanced-learn
+2. !pip install skl2onnx onnxruntime
+3. !pip install transformers
