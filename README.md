@@ -53,11 +53,16 @@ weighted avg       0.69      0.69      0.69      8801
 
 Bangla-BERT:
 
-Accuracy:  0.8778
-Precision: 0.8737
-Recall:    0.8535
-F1-score:  0.8635
-Confusion Matrix:
+1. Accuracy:  0.8778
+
+2. Precision: 0.8737
+
+3. Recall:    0.8535
+
+4. F1-score:  0.8635
+
+5. Confusion Matrix:
+
 [[2162  246]
  [ 292 1701]]
 (0.8777550556691661,
