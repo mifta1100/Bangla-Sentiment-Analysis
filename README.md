@@ -74,7 +74,9 @@ To set up the required packages, run the following commands:
 - **Tokenization:** I use the pretrained Bangla-BERT tokenizer (sagorsarker/bangla-bert-base) to break down the text into meaningful pieces called tokens. For instance, a sample normalized comment is split into smaller parts, and each part is then converted into a unique number the model can work with. This way, the raw text is transformed into a format that the model can easily understand and use.
 - **Class Balancing:** Class imbalance is addressed by applying SMOTE to oversample minority classes and Random Under Sampling to reduce the majority class, creating a balanced dataset.
 
- ![Image](https://github.com/user-attachments/assets/34a21046-dd37-4f72-96c7-8d1bcd2a1219)
+ <div align="center">
+  <img src="https://github.com/user-attachments/assets/34a21046-dd37-4f72-96c7-8d1bcd2a1219" alt="Image" />
+</div>
 
 - **Label Encoding:** Labels are encoded in a binary format (Bully vs Not-Bully) for current model deployment, while multiclass encoding is available for future model extensions.
 
