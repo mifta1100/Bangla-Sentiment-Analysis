@@ -18,7 +18,7 @@ The workflow includes comprehensive text preprocessing, feature extraction using
 
 ---
 
-## Dataset Gender Distribution
+### Dataset Gender Distribution
 
 The dataset consists of the following gender distribution:
 
@@ -28,6 +28,13 @@ The dataset consists of the following gender distribution:
 
 ![Image](https://github.com/user-attachments/assets/859e2227-f7b1-41a6-a5f1-9226c02810be)
 
+
+---
+
+### Dataset Multiclass Distribution 
+**Multiclass** (`sexual`, `not bully`, `troll`, `religious`, `threat`)
+
+![Image](https://github.com/user-attachments/assets/5f12f7f0-abad-4f66-b8c8-671003f801e8)
 
 ---
 
