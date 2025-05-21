@@ -50,6 +50,16 @@ The dataset consists of the following gender distribution:
 - **seaborn:** Enhanced statistical data visualization based on matplotlib.
 - **joblib:** Save and load Python objects efficiently.
 
+# Installation Instructions
+
+To set up the required packages, run the following commands:
+
+```bash
+!pip install imbalanced-learn
+!pip install skl2onnx onnxruntime
+!pip install transformers
+
+```
 ### 1. Data Preprocessing
 
 - **Normalization:** Clean text by removing unwanted characters and normalizing Unicode.
