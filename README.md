@@ -82,6 +82,7 @@ To set up the required packages, run the following commands:
   <img src="https://github.com/user-attachments/assets/34a21046-dd37-4f72-96c7-8d1bcd2a1219" alt="Image" />
 </div>
 
+
 - **Label Encoding:** Labels are encoded in a binary format (Bully vs Not-Bully) for current model deployment, while multiclass encoding is available for future model extensions.
 
 ### 2. Feature Extraction
