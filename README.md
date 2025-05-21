@@ -127,8 +127,107 @@ These confusion matrices illustrate that Bangla-BERT greatly improves true posit
 
 ## Example POST Request
 
+<<<<<<< HEAD
 ```json
 {
+=======
+Comment: The comment column holds the actual text from social media that will be analyzed or classified.
+
+Label: The label column shows the category of each comment. such as:
+
+sexual
+not bully
+troll
+religious
+threat
+
+label structure: The dataset uses a multiclass label structure because the comments are categorized into different types of bullying or sentiments. This means that each comment is labeled with one specific category, such as offensive language, hate speech, neutral, positive, or negative.
+
+
+|-----------------------------------------------------------------------------------------------------------------------|
+
+
+Result Analysis: 
+
+TF-IDF + Logistic Regression: 
+Accuracy:  0.6925
+Precision: 0.6835
+Recall:    0.5855
+F1-score:  0.6307
+
+Confusion Matrix:
+[[3784 1070]
+ [1636 2311]]
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.70      0.78      0.74      4854
+           1       0.68      0.59      0.63      3947
+
+    accuracy                           0.69      8801
+   macro avg       0.69      0.68      0.68      8801
+weighted avg       0.69      0.69      0.69      8801
+
+
+Bangla-BERT:
+
+1. Accuracy:  0.8778
+
+2. Precision: 0.8737
+
+3. Recall:    0.8535
+
+4. F1-score:  0.8635
+
+5. Confusion Matrix:
+
+[[2162  246]
+ [ 292 1701]]
+(0.8777550556691661,
+ 0.8736517719568567,
+ 0.8534872052182639,
+ 0.8634517766497461,
+ array([[2162,  246],
+        [ 292, 1701]]))
+
+
+|-----------------------------------------------------------------------------------------------------------------------|
+
+
+How to Run the API:
+
+Code organization:
+1. I separated all necessary preprocessing functions such as: text normalization, stopword removal into a dedicated Python file.
+2. This file is imported into the main FastAPI app script.
+3. The ONNX model file and stopwords dataset are placed in the same directory on the EC2 instance.
+
+Virtual Environment Setup:
+1. On the EC2 instance, I created a Python virtual environment (venv) to isolate dependencies.
+2. This avoids version conflicts because different projects often require different package versions.
+3. After creating the virtual environment, I activated it.
+4. Inside the activated environment, I installed all required Python packages such as: fastapi, uvicorn, onnxruntime, pandas, openpyxl, etc.
+
+Running the FastAPI app:
+1. With the virtual environment activated, I ran the FastAPI server using Uvicorn.
+2. I specified the host as 0.0.0.0 to allow external access and the port as 8000.
+3. The server started successfully and was listening on port 8000.
+
+Testing the API with Postman:
+1. I used Postman to test the API.
+2. In Postman, I set the method to POST and the URL to http://122.248.240.219:8000/predict.
+3. In the request body, I selected raw and set the format to JSON.
+4. I wrote the JSON payload with a "text" field containing the Bangla comment to analyze.
+5. After sending the request, I received the predicted label in the JSON response.
+
+
+Example POST Request:
+
+1. In POSTMAN, use the http://122.248.240.219:8000/predict
+2. Content-Type: application/json
+
+3. {
+>>>>>>> b5624951685846ed9c620309c3ce6e190061ef78
   "text": "তুমি খুব খারাপ একজন মানুষ"
 }
 
@@ -162,3 +261,13 @@ These confusion matrices illustrate that Bangla-BERT greatly improves true posit
 
 ---
 
+<<<<<<< HEAD
+=======
+Note: Although I encode the labels for both binary and multiclass classification, I focus only on the binary labels for both model (TF-IDF + Logistic Regression) and Bangla-BERT fine-tuning model. However, multiclass encoding has been done and can be applied to these models in future work. I have already apply Encoding to multiclass in my code too but I use Binary.
+
+
+Note: I have also worked on fine-tuning the Bangla-BERT model. However, both the Bangla-BERT model and its ONNX format are too large in size (exceeding 1GB) to upload to GitHub. Due to this file size limitation, I have only included the notebook file: "Sentiment_Analysis_Bangla_BERT_Miftahul_Sheikh.ipynb" which is placed inside the "extra" folder. Thank you for your understanding.
+
+
+|-----------------------------------------------------------------------------------------------------------------------|
+>>>>>>> b5624951685846ed9c620309c3ce6e190061ef78
