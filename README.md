@@ -154,6 +154,10 @@ These confusion matrices illustrate that Bangla-BERT greatly improves true posit
 
 ```
 
+![Image](https://github.com/user-attachments/assets/d4d7da68-6914-41d3-8103-46defeb961e4)
+
+---
+
 ## Limitations and Future Improvements
 
 - Cleaning the text even better, such as handling slang, emojis, and typos more accurately, can help the model understand the comments more clearly and improve results.  
