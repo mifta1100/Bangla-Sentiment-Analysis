@@ -179,7 +179,9 @@ These confusion matrices illustrate that Bangla-BERT greatly improves true posit
 
 ```
 
-![Image](https://github.com/user-attachments/assets/d4d7da68-6914-41d3-8103-46defeb961e4)
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/d4d7da68-6914-41d3-8103-46defeb961e4" alt="Image" />
+</div>
 
 ---
 
