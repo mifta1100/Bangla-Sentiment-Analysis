@@ -84,6 +84,9 @@ The dataset consists of the following gender distribution:
 | Actual Not-Bully | 3784                | 1070            |
 | Actual Bully     | 1636                | 2311            |
 
+
+![Image](https://github.com/user-attachments/assets/41a6587d-b0e7-4586-b859-e18c6a1549fb)
+
 ---
 
 **Bangla-BERT Fine-tuning**
@@ -92,6 +95,10 @@ The dataset consists of the following gender distribution:
 |---------------|---------------------|-----------------|
 | Actual Not-Bully | 2162                | 246             |
 | Actual Bully     | 292                 | 1701            |
+
+
+![Image](https://github.com/user-attachments/assets/4b439389-e2f8-4471-9edb-7d4c9f527161)
+
 
 ---
 
