@@ -149,16 +149,14 @@ These confusion matrices illustrate that Bangla-BERT greatly improves true posit
 - Advanced feature extraction techniques like GloVe, Word2Vec, or FastText can give the model a deeper understanding of the meaning behind each word, which can lead to better predictions.  
 - Using fine-tuning on more powerful models like Bangla-BERT, Bangla DistilBERT, XLM-RoBERTa, or BanglaT5 could boost accuracy and help the system better understand complex language patterns.
 
----
 
 ## Note
 
-> **Note:** Although I encode the labels for both binary and multiclass classification, I focus only on the binary labels for both models (TF-IDF + Logistic Regression) and Bangla-BERT fine-tuning model. However, multiclass encoding has been done and can be applied to these models in future work. I have already applied encoding to multiclass in my code too, but I use binary.
+**Note:** Although I encode the labels for both binary and multiclass classification, I focus only on the binary labels for both models (TF-IDF + Logistic Regression) and Bangla-BERT fine-tuning model. However, multiclass encoding has been done and can be applied to these models in future work. I have already applied encoding to multiclass in my code too, but I use binary.
 
-> **Note:** I have also worked on fine-tuning the Bangla-BERT model. However, both the Bangla-BERT model and its ONNX format are too large in size (exceeding 1GB) to upload to GitHub. Due to this file size limitation, I have only included the notebook file:  
-> `"Sentiment_Analysis_Bangla_BERT_Miftahul_Sheikh.ipynb"`.
+**Note:** I have also worked on fine-tuning the Bangla-BERT model. However, both the Bangla-BERT model and its ONNX format are too large in size (exceeding 1GB) to upload to GitHub. Due to this file size limitation, I have only included the notebook file:  
+`"Sentiment_Analysis_Bangla_BERT_Miftahul_Sheikh.ipynb"`.
 
-> Thank you for your understanding.
+Thank you for your understanding.
 
----
 
