@@ -1,126 +1,164 @@
-Project overview: This project focuses on analyzing Bangla Facebook comments to determine the sentiment behind them, whether it is Bully or Not-Bully. I used a publicly available dataset called the Bangla-Text-Dataset collected from the GitHub, which contains over 44,001 real comments collected from social media. The goal is to build a system that can accurately classify each comment's sentiment and make it accessible through a simple web API built with FastAPI. Along the way, I handled everything from cleaning the data and training the model to converting it into a ONNX format suitable for deployment. I preprocessed the data, Remove Stopwords, Use Pre-trained models like Bangla-BERT for Tokenize, and then Encode to Binary. I Apply Logistic Regression Model with TF-IDF feature extraction technique. During the project, I experimented with multiple modeling approaches, including BiLSTM and Bangla-BERT, to explore how well different architectures perform on Bangla sentiment classification. However, for deployment purposes, I use the Logistic Regression model with TF-IDF features in the FastAPI endpoint.
+# Sentiment Analysis of Bangla Social Media Comments
+
+## Project Overview
+
+This project focuses on analyzing Bangla Facebook comments to detect sentiment, specifically classifying comments as **Bully** or **Not-Bully**. Using the publicly available **Bangla-Text-Dataset** of over 44,001 real-world social media comments, the goal is to build an accurate, lightweight model accessible via a FastAPI web service.
+
+The workflow includes comprehensive text preprocessing, feature extraction using TF-IDF, training a Logistic Regression model, and deployment using ONNX for efficient inference. Experiments with advanced models like Bangla-BERT fine-tuning have also been conducted to explore accuracy improvements.
+
+---
+
+## Dataset Details
+
+- **Source:** [Bangla-Text-Dataset on GitHub](https://github.com/cypher-07/Bangla-Text-Dataset/tree/main)
+- **Content:** 44,001 Bangla Facebook comments from public pages (celebrities, politicians, athletes).
+- **Labels:** Multiclass (`sexual`, `not bully`, `troll`, `religious`, `threat`)
+- **Labeling:** Each comment is tagged with a single label, representing types of bullying or neutral sentiment.
+- **Usage:** Build a model to classify bullying and general sentiment in Bangla social media comments.
+
+---
+
+## Dataset Gender Distribution
+
+The dataset consists of the following gender distribution:
+
+- **Female:** 68.07%
+- **Male:** 31.93%
+
+---
+
+## Technical Approach
+
+### Required Libraries
+
+- **pandas:** Manipulate and analyze data tables.
+- **re (regular expressions):** Search and manipulate strings using patterns.
+- **unicodedata:** Normalize and process Unicode text.
+- **transformers (AutoTokenizer):** Tokenize text using pre-trained NLP models.
+- **imblearn.over_sampling (SMOTE):** Balance dataset by creating synthetic samples of the minority class.
+- **imblearn.under_sampling (RandomUnderSampler):** Reduce majority class to balance dataset.
+- **sklearn.model_selection (train_test_split):** Split dataset into training and testing sets.
+- **sklearn.feature_extraction.text (TfidfVectorizer):** Convert text to numerical features using TF-IDF.
+- **sklearn.linear_model (LogisticRegression):** Train a classification model using logistic regression.
+- **sklearn.metrics:** Evaluate model performance (accuracy, precision, recall, F1, confusion matrix, classification report).
+- **random:** Perform random operations like shuffling and sampling.
+- **matplotlib.pyplot:** Create visualizations and plots.
+- **seaborn:** Enhanced statistical data visualization based on matplotlib.
+- **joblib:** Save and load Python objects efficiently.
+
+### 1. Data Preprocessing
+
+- **Normalization:** Clean text by removing unwanted characters and normalizing Unicode.
+- **Stopword Removal:** Filter out common Bangla stopwords. [Bangla Stopwords Dataset](https://docs.google.com/spreadsheets/d/1bF6lGq1exiYNDOTSzsXd_TqxX3D5jKqg/edit?usp=sharing&ouid=114522712885813850468&rtpof=true&sd=true)
+
+- **Tokenization:** Use pretrained Bangla-BERT tokenizer for robust token-level understanding.
+- **Class Balancing:** Address class imbalance with SMOTE (oversampling minority classes) and RandomUnderSampler.
+- **Label Encoding:** Focus on binary encoding (Bully vs Not-Bully) for deployed models, while multiclass encoding is supported for future extensions.
+
+### 2. Feature Extraction
+
+- Apply **TF-IDF Vectorization** to transform cleaned comments into numerical vectors representing term importance.
+
+### 3. Model Training & Evaluation
+
+- **Model:** Logistic Regression trained on TF-IDF features.
+- **Performance Metrics:**
+
+| Metric     | TF-IDF + Logistic Regression | Bangla-BERT Fine-tuning |
+|------------|------------------------------|------------------------|
+| Accuracy   | 0.6925                       | 0.8778                 |
+| Precision  | 0.6835                       | 0.8737                 |
+| Recall     | 0.5855                       | 0.8535                 |
+| F1-Score   | 0.6307                       | 0.8635                 |
+
+### Confusion Matrices
+
+**TF-IDF + Logistic Regression**
+
+|               | Predicted Not-Bully | Predicted Bully |
+|---------------|---------------------|-----------------|
+| Actual Not-Bully | 3784                | 1070            |
+| Actual Bully     | 1636                | 2311            |
+
+---
+
+**Bangla-BERT Fine-tuning**
+
+|               | Predicted Not-Bully | Predicted Bully |
+|---------------|---------------------|-----------------|
+| Actual Not-Bully | 2162                | 246             |
+| Actual Bully     | 292                 | 1701            |
+
+---
+
+These confusion matrices illustrate that Bangla-BERT greatly improves true positive and true negative classifications compared to the TF-IDF + Logistic Regression baseline.
 
 
-|-----------------------------------------------------------------------------------------------------------------------|
+# How to Run the API
 
+## Code Organization
+- I separated all necessary preprocessing functions such as text normalization and stopword removal into a dedicated Python file.  
+- This file is imported into the main FastAPI app script.  
+- The ONNX model file and stopwords dataset are placed in the same directory on the EC2 instance.  
 
-Dataset Resource and Purpose:
+## Virtual Environment Setup
+- On the EC2 instance, I created a Python virtual environment (`venv`) to isolate dependencies.  
+- This avoids version conflicts because different projects often require different package versions.  
+- After creating the virtual environment, I activated it.  
+- Inside the activated environment, I installed all required Python packages such as:  
+  - `fastapi`  
+  - `uvicorn`  
+  - `onnxruntime`  
+  - `pandas`  
+  - `openpyxl`  
+  - etc.  
 
-The dataset is sourced from the Bangla-Text-Dataset on GitHub. It contains 44,001 social media comments scraped from public Facebook pages, including those of celebrities, politicians, and athletes. Each comment is labeled either with bullying categories or sentiment labels.
+## Running the FastAPI App
+- With the virtual environment activated, I ran the FastAPI server using Uvicorn.  
+- I specified the host as `0.0.0.0` to allow external access and the port as `8000`.  
+- The server started successfully and was listening on port `8000`.  
 
-This dataset is used to build a Bangla sentiment analysis model that can understand and sort social media comments into different feelings or categories. It helps to see what people think and feel about different topics on Bangla social media. The model can also spot bullying comments and keep track of conversations online. In the end, the model will be available as an easy-to-use FastAPI service that can classify comments quickly in real-time.
+## Testing the API with Postman
+- I used Postman to test the API.  
+- In Postman, I set the method to `POST` and the URL to `http://122.248.240.219:8000/predict`.  
+- In the request body, I selected `raw` and set the format to `JSON`.  
+- I wrote the JSON payload with a `"text"` field containing the Bangla comment to analyze.  
+- After sending the request, I received the predicted label in the JSON response.  
 
-Dataset Review: The dataset consists of social media comments written in Bangla, which serve as the input texts. Each comment represents an individual piece of text expressing opinions, reactions, or statements related to celebrities, politicians, athletes, or social issues.
+## Example POST Request
 
-Comment: The comment column holds the actual text from social media that will be analyzed or classified.
-
-Label: The label column shows the category of each comment. such as:
-
-sexual
-not bully
-troll
-religious
-threat
-
-label structure: The dataset uses a multiclass label structure because the comments are categorized into different types of bullying or sentiments. This means that each comment is labeled with one specific category, such as offensive language, hate speech, neutral, positive, or negative.
-
-
-|-----------------------------------------------------------------------------------------------------------------------|
-
-
-Result Analysis: 
-
-TF-IDF + Logistic Regression: 
-Accuracy:  0.6925
-Precision: 0.6835
-Recall:    0.5855
-F1-score:  0.6307
-
-Confusion Matrix:
-[[3784 1070]
- [1636 2311]]
-
-Classification Report:
-              precision    recall  f1-score   support
-
-           0       0.70      0.78      0.74      4854
-           1       0.68      0.59      0.63      3947
-
-    accuracy                           0.69      8801
-   macro avg       0.69      0.68      0.68      8801
-weighted avg       0.69      0.69      0.69      8801
-
-
-Bangla-BERT:
-
-Accuracy:  0.8778
-Precision: 0.8737
-Recall:    0.8535
-F1-score:  0.8635
-Confusion Matrix:
-[[2162  246]
- [ 292 1701]]
-(0.8777550556691661,
- 0.8736517719568567,
- 0.8534872052182639,
- 0.8634517766497461,
- array([[2162,  246],
-        [ 292, 1701]]))
-
-
-|-----------------------------------------------------------------------------------------------------------------------|
-
-
-How to Run the API:
-
-Code organization:
-1. I separated all necessary preprocessing functions such as: text normalization, stopword removal into a dedicated Python file.
-2. This file is imported into the main FastAPI app script.
-3. The ONNX model file and stopwords dataset are placed in the same directory on the EC2 instance.
-
-Virtual Environment Setup:
-1. On the EC2 instance, I created a Python virtual environment (venv) to isolate dependencies.
-2. This avoids version conflicts because different projects often require different package versions.
-3. After creating the virtual environment, I activated it.
-4. Inside the activated environment, I installed all required Python packages such as: fastapi, uvicorn, onnxruntime, pandas, openpyxl, etc.
-
-Running the FastAPI app:
-1. With the virtual environment activated, I ran the FastAPI server using Uvicorn.
-2. I specified the host as 0.0.0.0 to allow external access and the port as 8000.
-3. The server started successfully and was listening on port 8000.
-
-Testing the API with Postman:
-1. I used Postman to test the API.
-2. In Postman, I set the method to POST and the URL to http://122.248.240.219:8000/predict.
-3. In the request body, I selected raw and set the format to JSON.
-4. I wrote the JSON payload with a "text" field containing the Bangla comment to analyze.
-5. After sending the request, I received the predicted label in the JSON response.
-
-
-Example POST Request:
-
-1. In POSTMAN, use the http://122.248.240.219:8000/predict
-2. Content-Type: application/json
-
-3. {
+```json
+{
   "text": "তুমি খুব খারাপ একজন মানুষ"
 }
 
-4. {
+```
+
+## Example Predicted Label
+
+```json
+{
   "predicted_label": "Bully"
 }
 
+```
 
-|-----------------------------------------------------------------------------------------------------------------------|
+## Limitations and Future Improvements
 
+- Cleaning the text even better, such as handling slang, emojis, and typos more accurately, can help the model understand the comments more clearly and improve results.  
+- Advanced feature extraction techniques like GloVe, Word2Vec, or FastText can give the model a deeper understanding of the meaning behind each word, which can lead to better predictions.  
+- Using fine-tuning on more powerful models like Bangla-BERT, Bangla DistilBERT, XLM-RoBERTa, or BanglaT5 could boost accuracy and help the system better understand complex language patterns.
 
-Limitations and future improvements: 
-1. Cleaning the text even better like handling slang, emojis, and typos more accurately, can help the model understand the comments more clearly and improve results.
-2. Advanced Feature extraction technique like GloVe, Word2Vec, or FastText can give the model a deeper understanding of the meaning behind each word, which can lead to better predictions.
-3. Using fine-tuning more powerful models like Bangla-BERT, Bangla DistilBERT, XLM-RoBERTa, or BanglaT5 could boost accuracy and help the system better understand complex language patterns.
+---
 
+## Note
 
-|-----------------------------------------------------------------------------------------------------------------------|
+> **Note:** Although I encode the labels for both binary and multiclass classification, I focus only on the binary labels for both models (TF-IDF + Logistic Regression) and Bangla-BERT fine-tuning model. However, multiclass encoding has been done and can be applied to these models in future work. I have already applied encoding to multiclass in my code too, but I use binary.
 
+> **Note:** I have also worked on fine-tuning the Bangla-BERT model. However, both the Bangla-BERT model and its ONNX format are too large in size (exceeding 1GB) to upload to GitHub. Due to this file size limitation, I have only included the notebook file:  
+> `"Sentiment_Analysis_Bangla_BERT_Miftahul_Sheikh.ipynb"`.
 
-Note: Although I encode the labels for both binary and multiclass classification, I focus only on the binary labels for both model (TF-IDF + Logistic Regression) and Bangla-BERT fine-tuning model. However, multiclass encoding has been done and can be applied to these models in future work. I have already apply Encoding to multiclass in my code too but I use Binary.
+> Thank you for your understanding.
+
+---
+
