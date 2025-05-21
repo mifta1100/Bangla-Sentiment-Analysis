@@ -25,6 +25,10 @@ The dataset consists of the following gender distribution:
 - **Female:** 68.07%
 - **Male:** 31.93%
 
+
+![Image](https://github.com/user-attachments/assets/859e2227-f7b1-41a6-a5f1-9226c02810be)
+
+
 ---
 
 ## Technical Approach
