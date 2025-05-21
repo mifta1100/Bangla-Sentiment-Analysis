@@ -89,7 +89,19 @@ To set up the required packages, run the following commands:
 
 - Apply **TF-IDF Vectorization** to transform cleaned comments into numerical vectors representing term importance.
 
-### 3. Model Training & Evaluation
+
+### 3. Model
+
+#### 1. TF-IDF + Logistic Regression
+
+This is a classic machine learning method where we first convert text into numbers using TF-IDF, which highlights how important each word is within a document compared to the whole dataset. These numbers are then passed to a Logistic Regression model that learns to separate different classes by drawing a decision boundary. It’s a simple and fast approach that works well for many text tasks but doesn’t fully capture the deeper meaning or context of the words.
+
+#### 2. Bangla-BERT
+
+Bangla-BERT is a modern deep learning model built specifically for the Bangla language. It understands language by looking at whole sentences at once and using attention mechanisms to grasp context and relationships between words. When fine-tuned for classification, Bangla-BERT usually performs much better because it can understand the meaning and nuances in the text. Although it needs more computing power, it’s great for handling complex language tasks where context really matters.
+
+
+### 4. Model Training & Evaluation
 
 - **Model:** Logistic Regression trained on TF-IDF features.
 - **Performance Metrics:**
