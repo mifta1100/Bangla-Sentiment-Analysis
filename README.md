@@ -26,7 +26,9 @@ The dataset consists of the following gender distribution:
 - **Male:** 31.93%
 
 
-![Image](https://github.com/user-attachments/assets/859e2227-f7b1-41a6-a5f1-9226c02810be)
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/859e2227-f7b1-41a6-a5f1-9226c02810be" alt="Image" />
+</div>
 
 
 ---
@@ -34,7 +36,9 @@ The dataset consists of the following gender distribution:
 ### Dataset Multiclass Distribution 
 **Multiclass** (`sexual`, `not bully`, `troll`, `religious`, `threat`)
 
-![Image](https://github.com/user-attachments/assets/5f12f7f0-abad-4f66-b8c8-671003f801e8)
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/5f12f7f0-abad-4f66-b8c8-671003f801e8" alt="Image" />
+</div>
 
 ---
 
