@@ -69,12 +69,12 @@ To set up the required packages, run the following commands:
 ```
 ### 1. Data Preprocessing
 
-- **Normalization:** Clean text by removing unwanted characters and normalizing Unicode.
+- **Normalization:** The text is cleaned by removing digits, punctuations, web links, non-Bengali letters, and emojis, followed by Unicode normalization to maintain consistency across the dataset.
 - **Stopword Removal:** Filter out common Bangla stopwords. [Bangla Stopwords Dataset](https://docs.google.com/spreadsheets/d/1bF6lGq1exiYNDOTSzsXd_TqxX3D5jKqg/edit?usp=sharing&ouid=114522712885813850468&rtpof=true&sd=true)
-
-- **Tokenization:** Use pretrained Bangla-BERT tokenizer for robust token-level understanding.
-- **Class Balancing:** Address class imbalance with SMOTE (oversampling minority classes) and RandomUnderSampler.
-- **Label Encoding:** Focus on binary encoding (Bully vs Not-Bully) for deployed models, while multiclass encoding is supported for future extensions.
+- **Tokenization:** I use the pretrained Bangla-BERT tokenizer (sagorsarker/bangla-bert-base) to break down the text into meaningful pieces called tokens. For instance, a sample normalized comment is split into smaller parts, and each part is then converted into a unique number the model can work with. This way, the raw text is transformed into a format that the model can easily understand and use.
+- **Class Balancing:** Class imbalance is addressed by applying SMOTE to oversample minority classes and Random Under Sampling to reduce the majority class, creating a balanced dataset.
+ ![Image](https://github.com/user-attachments/assets/34a21046-dd37-4f72-96c7-8d1bcd2a1219)
+- **Label Encoding:** Labels are encoded in a binary format (Bully vs Not-Bully) for current model deployment, while multiclass encoding is available for future model extensions.
 
 ### 2. Feature Extraction
 
